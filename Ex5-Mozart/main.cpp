@@ -57,7 +57,7 @@ std::string char_vector_to_string(std::vector<char> vector_of_characters) {
 	return string;
 };
 
-std::function<std::string(size_t)> function_composition(
+std::function<std::string(size_t)> compose(
 							std::function<std::vector<char>(size_t)> func1,
 							std::function<std::string(std::vector<char>)> func2)
 {
@@ -95,7 +95,7 @@ int main()
 
 	/*function that received from the composition*/
 	std::function<std::string(size_t)> composed =
-								function_composition(generate_random_char_vector,
+								compose(generate_random_char_vector,
 														char_vector_to_string);
 
 	/*print the random string*/
