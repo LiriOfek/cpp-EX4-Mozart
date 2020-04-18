@@ -38,3 +38,20 @@ std::vector<char> generate_random_char_vector(size_t vector_size) {
 	}
 	return random_char_vector;
 };
+
+std::string char_vector_to_string(std::vector<char> vector_of_characters) {
+	/**
+	* @brief  get vector of chars and return the string that contains the
+	*		  chars in the vector
+	* @param  IN std::vector<char> vector_of_characters - vector containing characters
+	*		  OUT std::string the string that contain the chars in the vector
+	* @return string that contain the chars that in the vector
+	* @author Liri
+	*/
+	std::string string;
+	for (char character : vector_of_characters)
+	{
+		string.push_back(character);
+	}
+	return string;
+};
