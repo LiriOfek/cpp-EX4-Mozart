@@ -55,3 +55,22 @@ std::string char_vector_to_string(std::vector<char> vector_of_characters) {
 	}
 	return string;
 };
+
+std::function<std::string(size_t)> function_composition(
+	std::function<std::vector<char>(size_t)> func1,
+	std::function<std::string(std::vector<char>)> func2)
+{
+	/**
+	* @brief  compose the given functions in the right order - first run func1,
+	*		  and than run func2 with the return value from func1
+	* @param  IN std::function<std::vector<char>(size_t)> func1 - function that
+	*		  get size and return vector of chars
+	*		  IN std::function<std::string(std::vector<char>)> func2 - function that
+	*		  get vector of chars and return string
+	*		  OUT std::function<std::string(size_t)> - function that get size and
+	*		  return string, according to the functionlities of func1 and func2
+	* @return function that is the composition of func1 and func2
+	* @author Liri
+	*/
+	return std::bind(func2, std::bind(func1, _1));
+}
