@@ -18,6 +18,7 @@ using namespace std::placeholders;
 const char FIRST_LETTER = 'a';
 const int NUMBER_OF_LETTERS = 25;
 const int ZERO = 0;
+const char* ENTER_SIZE = "Enter size of string:";
 
 std::vector<char> generate_random_char_vector(size_t vector_size) {
 	/**
@@ -57,8 +58,8 @@ std::string char_vector_to_string(std::vector<char> vector_of_characters) {
 };
 
 std::function<std::string(size_t)> function_composition(
-	std::function<std::vector<char>(size_t)> func1,
-	std::function<std::string(std::vector<char>)> func2)
+							std::function<std::vector<char>(size_t)> func1,
+							std::function<std::string(std::vector<char>)> func2)
 {
 	/**
 	* @brief  compose the given functions in the right order - first run func1,
@@ -73,4 +74,33 @@ std::function<std::string(size_t)> function_composition(
 	* @author Liri
 	*/
 	return std::bind(func2, std::bind(func1, _1));
+}
+
+int main()
+{
+	/**
+	* @brief  get from user the size of the string, run the
+	*		  composition function of generation of random char vector and
+	*		  convert char vector to string and print the return value of
+	*		  the composition function - the random string
+	* @param  OUT - 0 that represents success
+	* @return 0 that represents success
+	* @author Liri
+	*/
+	int size_of_string = ZERO;
+
+	/*get size of string from user*/
+	std::cout << ENTER_SIZE << std::endl;
+	std::cin >> size_of_string;
+
+	/*function that received from the composition*/
+	std::function<std::string(size_t)> composed =
+								function_composition(generate_random_char_vector,
+														char_vector_to_string);
+
+	/*print the random string*/
+	std::string string = composed(size_of_string);
+	std::cout << string << std::endl;
+
+	return ZERO;
 }
